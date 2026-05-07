@@ -2,13 +2,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!--
+    ¿Para qué sirve el <head>?
+    - Configura metadatos (charset, viewport).
+    - Carga el CSS.
+    - Define el título de la pestaña.
+  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mantenimiento y Aseguramiento de la Operación (ISO + ITIL v3)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!--
+    ¿Para qué sirve el <header>?
+    - Presenta el “hero” con el título del tema.
+    - Contiene el menú principal con submenús (dropdowns).
+  -->
   <header class="site-header">
+    <!-- Branding: marca + título/subtítulo -->
     <div class="brand">
       <div class="brand-mark" aria-hidden="true">Ops</div>
       <div class="brand-text">
@@ -17,6 +29,12 @@
       </div>
     </div>
 
+    <!--
+      Menú principal:
+      - Enlaces ancla (#id) para saltar a secciones.
+      - Botones con submenú (ISO/Planes/ITIL) que se abren/cierra con JS.
+      - aria-* mejora accesibilidad (lector de pantalla).
+    -->
     <nav class="site-nav" aria-label="Navegación principal">
       <ul class="nav-list">
         <li><a class="nav-link" href="#inicio">Inicio</a></li>
@@ -56,6 +74,12 @@
   </header>
 
   <main>
+    <!--
+      Sección “Inicio/Panel”:
+      - Buscador: filtra las secciones por texto/keywords.
+      - Chips: filtros rápidos (rellenan el buscador).
+      - Botón Mini‑quiz: abre un modal con preguntas.
+    -->
     <section id="inicio" class="toolbar" aria-label="Inicio">
       <div class="toolbar-row">
         <div>
@@ -80,6 +104,11 @@
       </div>
     </section>
 
+    <!--
+      ISO:
+      - Sección con tabs (pestañas) para mostrar 20000/27001/22301 sin recargar.
+      - data-topic: palabras clave para que el buscador filtre mejor.
+    -->
     <section id="iso" data-topic="iso 20000 27001 22301 sgsi continuidad servicios auditoría evidencia">
       <h2>Normas ISO (base para asegurar la operación)</h2>
       <p>
@@ -123,6 +152,7 @@
       </div>
     </section>
 
+    <!-- Controles: ideas de “qué evidencias” se usan para auditoría/aseguramiento -->
     <section id="controles" data-topic="controles evidencia auditoría políticas procedimientos registros">
       <h2>Controles y evidencia (lo que “piden” los marcos)</h2>
       <ul class="cards">
@@ -155,6 +185,11 @@ Acción correctiva:</code></pre>
       </details>
     </section>
 
+    <!--
+      Planes:
+      - BCP/DRP/Continuidad.
+      - Incluye checklist con checkbox persistentes (localStorage).
+    -->
     <section id="planes" data-topic="planes contingencia continuidad bcp drp rto rpo crisis comunicación">
       <h2>Planes de contingencia y continuidad</h2>
       <p>
@@ -198,6 +233,7 @@ Acción correctiva:</code></pre>
       </details>
     </section>
 
+    <!-- Plan Operativo: rutina diaria/semanal/mensual (operación) -->
     <section id="operativos" data-topic="plan operativo operación diaria monitoreo respaldos parches cambios">
       <h2>Planes operativos (operación diaria/semanal)</h2>
       <p class="muted">Un plan operativo traduce “buenas prácticas” en actividades con frecuencia, responsable y evidencia.</p>
@@ -225,6 +261,7 @@ Acción correctiva:</code></pre>
       </details>
     </section>
 
+    <!-- Simulacros: tipos de pruebas y qué medir (RTO/RPO, hallazgos) -->
     <section id="simulacros" data-topic="pruebas simulacros continuidad ejercicios tabletop recuperación">
       <h2>Pruebas, simulacros y mejora</h2>
       <details class="accordion">
@@ -245,6 +282,7 @@ Acción correctiva:</code></pre>
       </details>
     </section>
 
+    <!-- ITIL v3: ciclo de vida del servicio -->
     <section id="itil" data-topic="itil v3 ciclo de vida estrategia diseño transicion operación mejora continua">
       <h2>ITIL v3 (marco de buenas prácticas)</h2>
       <p>
@@ -260,6 +298,7 @@ Acción correctiva:</code></pre>
       </ol>
     </section>
 
+    <!-- Procesos ITIL: Incidente/Problema/Cambio (resumen) -->
     <section id="procesos" data-topic="incidente problema cambio configuración cmdb solicitud servicio">
       <h2>Procesos clave (para repaso rápido)</h2>
       <ul class="cards">
@@ -285,6 +324,7 @@ Acción correctiva:</code></pre>
       </details>
     </section>
 
+    <!-- Métricas: KPIs / SLAs para medir aseguramiento -->
     <section id="metricas" data-topic="kpi sla sli disponibilidad mttr mtbf cumplimiento">
       <h2>KPIs y SLAs (aseguramiento)</h2>
       <div class="grid-2">
@@ -308,6 +348,7 @@ Acción correctiva:</code></pre>
       </div>
     </section>
 
+    <!-- Herramientas: comandos y botón “Copiar” -->
     <section id="herramientas" data-topic="herramientas comandos powershell linux respaldo red monitoreo">
       <h2>Herramientas rápidas (comandos copiables)</h2>
       <p class="muted">Úsalos solo en equipos autorizados. Sirven para práctica y diagnóstico básico.</p>
@@ -348,10 +389,16 @@ Acción correctiva:</code></pre>
     </section>
   </main>
 
+  <!-- Footer: cierre y nota de contexto educativo -->
   <footer class="site-footer">
     <p>Hecho para repaso escolar — contenido general (ISO/ITIL) y ejemplos. Ajusta a políticas y contexto real.</p>
   </footer>
 
+  <!--
+    Modal (dialog) del quiz:
+    - <dialog> se abre con JS (showModal()).
+    - Se renderizan preguntas dinámicamente dentro de #quizBody.
+  -->
   <dialog class="modal" id="quiz" aria-label="Mini-quiz de operación y aseguramiento">
     <form method="dialog" class="modal-card">
       <div class="modal-head">
@@ -369,10 +416,15 @@ Acción correctiva:</code></pre>
 
   <script>
     (function () {
+      // Helpers:
+      // - $: selecciona 1 elemento.
+      // - $$: selecciona muchos elementos (array).
       const $ = (s, r = document) => r.querySelector(s);
       const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-      // Menús (submenús) en el header
+      // Menús (submenús) en el header:
+      // - Cada .nav-group tiene un botón y un panel.
+      // - closeAllMenus() cierra todos para que solo quede uno abierto.
       const groups = $$('.nav-group');
       function closeAllMenus(except) {
         groups.forEach(g => {
@@ -398,13 +450,17 @@ Acción correctiva:</code></pre>
         });
       });
       document.addEventListener('click', (e) => {
+        // Click fuera del menú: cierra todo.
         if (!e.target.closest('.nav-group')) closeAllMenus();
       });
       document.addEventListener('keydown', (e) => {
+        // Escape: cierra todo.
         if (e.key === 'Escape') closeAllMenus();
       });
 
-      // Tabs ISO
+      // Tabs ISO:
+      // - Cambia el aria-selected del tab.
+      // - Muestra/oculta el panel (tabpanel) usando hidden.
       const tabRoot = $('#iso-tabs');
       if (tabRoot) {
         const tabs = $$('.tab', tabRoot);
@@ -416,7 +472,9 @@ Acción correctiva:</code></pre>
         tabs.forEach(t => t.addEventListener('click', () => activate(t)));
       }
 
-      // Buscador por secciones
+      // Buscador por secciones:
+      // - Normaliza texto (minusculas + sin tildes) para buscar mejor.
+      // - Filtra secciones escondiéndolas con display:none.
       const q = $('#q');
       const sections = $$('main section').filter(s => s.id && s.id !== 'inicio');
       const norm = (v) => (v || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
@@ -430,7 +488,8 @@ Acción correctiva:</code></pre>
       }
       q?.addEventListener('input', () => applyFilter(q.value));
 
-      // Chips (filtros rápidos)
+      // Chips (filtros rápidos):
+      // - Rellenan el buscador con una palabra clave y aplican el filtro.
       $$('.chip').forEach(ch => ch.addEventListener('click', () => {
         const term = ch.dataset.chip || '';
         if (q) {
@@ -440,7 +499,8 @@ Acción correctiva:</code></pre>
         }
       }));
 
-      // Guardado de checklist en localStorage
+      // Guardado de checklist en localStorage:
+      // - Persiste el estado de checkbox aunque se cierre el navegador.
       const key = 'repaso_ops_checklist_v1';
       const checks = $$('#planChecklist input[type="checkbox"][data-save]');
       function loadChecklist() {
@@ -461,7 +521,9 @@ Acción correctiva:</code></pre>
         saveChecklist();
       });
 
-      // Copiar comandos
+      // Copiar comandos:
+      // - Usa navigator.clipboard para copiar el texto del <code>.
+      // - Cambia el texto del botón como feedback.
       $$('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
         const card = btn.closest('[data-cmd]');
         const code = $('code', card)?.textContent || '';
@@ -475,7 +537,9 @@ Acción correctiva:</code></pre>
         }
       }));
 
-      // Mini-quiz
+      // Mini-quiz:
+      // - Renderiza preguntas en el modal.
+      // - scoreQuiz() calcula aciertos.
       const quiz = $('#quiz');
       const openQuiz = $('#openQuiz');
       const quizBody = $('#quizBody');

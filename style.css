@@ -1,6 +1,12 @@
 /* Tema: operación TI (ISO + ITIL v3 + planes) */
+/* Este archivo define el diseño visual y la “UI” de la página:
+   - Colores/tema (variables)
+   - Layout (contenedor centrado)
+   - Componentes: menú/submenús, tabs, acordeones, modal del quiz, etc.
+*/
 
 :root{
+  /* Variables: permiten cambiar el tema desde un solo lugar */
   --bg: #0b1220;
   --surface: rgba(255, 255, 255, 0.06);
   --surface-2: rgba(255, 255, 255, 0.09);
@@ -12,13 +18,18 @@
   --radius: 16px;
   --radius-sm: 12px;
 
+  /* Layout global */
   --max: 1020px;
   --pad: 16px;
 }
 
+/* Reset ligero: evita errores por padding/border */
 *{ box-sizing: border-box; }
+
+/* Navegación suave al hacer click en enlaces #seccion */
 html{ scroll-behavior: smooth; }
 
+/* Base: tipografía y fondo */
 body{
   margin: 0;
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
@@ -30,9 +41,11 @@ body{
     linear-gradient(180deg, #070b14 0%, var(--bg) 45%, #172644 100%);
 }
 
+/* Enlaces/botones: heredan el color del tema */
 a{ color: inherit; }
 button{ font: inherit; color: inherit; }
 
+/* Contenedores principales: centro + padding lateral */
 .site-header,
 main,
 .site-footer{
@@ -42,11 +55,13 @@ main,
 }
 
 .site-header{
+  /* Header: contiene hero + navegación */
   position: relative;
   padding-top: 40px;
   padding-bottom: 14px;
 }
 .site-header::before{
+  /* “Hero” decorativo detrás del header */
   content: "";
   position: absolute;
   inset: 18px var(--pad) auto var(--pad);
@@ -61,11 +76,13 @@ main,
 }
 
 .brand{
+  /* Branding: marca + título */
   display: flex;
   gap: 14px;
   align-items: flex-start;
 }
 .brand-mark{
+  /* Cuadro “Ops” */
   width: 46px;
   height: 46px;
   border-radius: 14px;
@@ -79,17 +96,20 @@ main,
   user-select: none;
 }
 .brand-text h1{
+  /* Título principal */
   margin: 0;
   letter-spacing: -0.02em;
   font-size: clamp(1.75rem, 3.0vw, 2.5rem);
 }
 .tagline{
+  /* Subtítulo (texto secundario) */
   margin: 8px 0 14px;
   color: var(--muted);
 }
 
 .site-nav{ margin-top: 10px; }
 .nav-list{
+  /* Lista del menú principal (fila, con wrap) */
   list-style: none;
   padding: 0;
   margin: 0;
@@ -99,6 +119,7 @@ main,
   align-items: center;
 }
 .nav-link{
+  /* “Píldoras” del menú */
   display: inline-flex;
   align-items: center;
   padding: 10px 12px;
@@ -121,6 +142,7 @@ main,
 .nav-group{ position: relative; }
 .nav-button{ appearance: none; cursor: pointer; }
 .nav-panel{
+  /* Panel del submenú (dropdown) */
   position: absolute;
   top: calc(100% + 10px);
   left: 0;
@@ -137,6 +159,7 @@ main,
 }
 .nav-panel.open{ display: grid; gap: 6px; }
 .nav-panel a{
+  /* Opciones dentro del submenú */
   text-decoration: none;
   padding: 10px 10px;
   border-radius: 12px;
@@ -149,10 +172,12 @@ main,
 }
 
 main{
+  /* Espaciado vertical del contenido */
   padding-top: 18px;
   padding-bottom: 48px;
 }
 section{
+  /* Cada sección se renderiza como “tarjeta” */
   margin-top: 22px;
   padding: 18px;
   border-radius: var(--radius);
@@ -173,6 +198,7 @@ section p{
 .primary,
 .secondary,
 .ghost{
+  /* Botones reutilizables (base) */
   border-radius: 999px;
   padding: 10px 12px;
   border: 1px solid rgba(255,255,255,0.14);
@@ -181,6 +207,7 @@ section p{
   transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 .primary{
+  /* Botón principal (más llamativo) */
   background: linear-gradient(135deg, rgba(124,92,255,0.45), rgba(45,212,191,0.18));
   border-color: rgba(255,255,255,0.18);
 }
@@ -199,6 +226,7 @@ section p{
 }
 
 .cards{
+  /* Cards: grilla para presentar conceptos en “tarjetas” */
   list-style: none;
   padding: 0;
   margin: 14px 0 0;
@@ -229,6 +257,7 @@ ol li{ margin: 8px 0; }
 
 .toolbar{ padding: 18px; }
 .toolbar-row{
+  /* Acomoda título + botón “Mini‑quiz” */
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -249,6 +278,7 @@ kbd{
 .field{ display: grid; gap: 8px; }
 .field-label{ color: var(--muted); font-size: 0.95rem; }
 input[type="search"]{
+  /* Caja de búsqueda del panel */
   width: 100%;
   padding: 12px 12px;
   border-radius: 14px;
@@ -264,6 +294,7 @@ input[type="search"]:focus-visible{
 }
 .chips{ display: flex; flex-wrap: wrap; gap: 10px; }
 .chip{
+  /* Filtros rápidos (rellenan el buscador) */
   border-radius: 999px;
   padding: 8px 10px;
   border: 1px solid rgba(255,255,255,0.14);
@@ -273,6 +304,7 @@ input[type="search"]:focus-visible{
 .chip:hover{ background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.20); }
 
 .accordion{
+  /* Acordeón con <details>: muestra/oculta contenido */
   margin-top: 14px;
   border-radius: calc(var(--radius) - 4px);
   border: 1px solid rgba(255,255,255,0.12);
@@ -328,6 +360,7 @@ input[type="search"]:focus-visible{
 .checklist input[type="checkbox"]{ transform: translateY(1px); accent-color: rgba(124,92,255,0.95); }
 
 .tabs{
+  /* Tabs (pestañas) de ISO */
   margin-top: 14px;
   border-radius: var(--radius);
   border: 1px solid rgba(255,255,255,0.12);
@@ -357,6 +390,7 @@ input[type="search"]:focus-visible{
 .tabpane h3{ margin: 0 0 8px; font-size: 1.05rem; }
 
 .cmd-grid{
+  /* Grilla de comandos (tarjetas con botón “Copiar”) */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
@@ -394,6 +428,7 @@ input[type="search"]:focus-visible{
 }
 
 .modal{
+  /* Modal del mini‑quiz (componente <dialog>) */
   width: min(760px, calc(100% - 26px));
   border: 0;
   padding: 0;
@@ -449,6 +484,7 @@ input[type="search"]:focus-visible{
 }
 
 @media (max-width: 860px){
+  /* Responsive: 1 columna + submenús apilados */
   .cards{ grid-template-columns: 1fr; }
   .cmd-grid{ grid-template-columns: 1fr; }
   .grid-2{ grid-template-columns: 1fr; }
