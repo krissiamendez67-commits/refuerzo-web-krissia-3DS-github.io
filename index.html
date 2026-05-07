@@ -1,94 +1,520 @@
 
 <!DOCTYPE html>
-<!-- Documento HTML5; idioma español para lectores y buscadores -->
 <html lang="es">
 <head>
-  <!-- Codificación UTF-8 para tildes y caracteres especiales -->
   <meta charset="UTF-8">
-  <!-- Escala correcta en móviles -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Título que aparece en la pestaña del navegador -->
-  <title>Mantenimiento y operación de sistemas informáticos</title>
-  <!-- Hoja de estilos externa -->
+  <title>Mantenimiento y Aseguramiento de la Operación (ISO + ITIL v3)</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Cabecera: título de la página, subtítulo y menú -->
   <header class="site-header">
-    <h1>Sistemas informáticos</h1>
-    <p class="tagline">Mantenimiento y operación — guía breve</p>
-    <!-- Enlaces internos a cada sección (anclas #id); aria-label para lectores de pantalla -->
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">Ops</div>
+      <div class="brand-text">
+        <h1>Mantenimiento y Aseguramiento de la Operación</h1>
+        <p class="tagline">ISO (20000/27001/22301) · Planes de contingencia/operación · ITIL v3</p>
+      </div>
+    </div>
+
     <nav class="site-nav" aria-label="Navegación principal">
-      <ul>
-        <li><a href="#introduccion">Introducción</a></li>
-        <li><a href="#tipos-mantenimiento">Mantenimiento</a></li>
-        <li><a href="#buenas-practicas">Buenas prácticas</a></li>
-        <li><a href="#seguridad">Seguridad</a></li>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-group">
+          <button class="nav-link nav-button" type="button" data-menu="menu-iso" aria-haspopup="true" aria-expanded="false">
+            ISO
+          </button>
+          <div class="nav-panel" id="menu-iso" role="menu" aria-label="Menú ISO">
+            <a href="#iso" role="menuitem">Visión general</a>
+            <a href="#iso-tabs" role="menuitem">ISO 20000 / 27001 / 22301</a>
+            <a href="#controles" role="menuitem">Controles y evidencia</a>
+          </div>
+        </li>
+        <li class="nav-group">
+          <button class="nav-link nav-button" type="button" data-menu="menu-planes" aria-haspopup="true" aria-expanded="false">
+            Planes
+          </button>
+          <div class="nav-panel" id="menu-planes" role="menu" aria-label="Menú Planes">
+            <a href="#planes" role="menuitem">BCP / DRP / Continuidad</a>
+            <a href="#operativos" role="menuitem">Plan Operativo</a>
+            <a href="#simulacros" role="menuitem">Pruebas y simulacros</a>
+          </div>
+        </li>
+        <li class="nav-group">
+          <button class="nav-link nav-button" type="button" data-menu="menu-itil" aria-haspopup="true" aria-expanded="false">
+            ITIL v3
+          </button>
+          <div class="nav-panel" id="menu-itil" role="menu" aria-label="Menú ITIL v3">
+            <a href="#itil" role="menuitem">Ciclo de vida</a>
+            <a href="#procesos" role="menuitem">Procesos clave</a>
+            <a href="#metricas" role="menuitem">KPIs y SLAs</a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="#herramientas">Herramientas</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Cuerpo principal: bloques temáticos con id para el menú -->
   <main>
-    <!-- Sección 1: definición de operación y mantenimiento -->
-    <section id="introduccion">
-      <h2>¿Qué implica operar un sistema?</h2>
-      <p>
-        La <strong>operación</strong> del sistema informático consiste en usar los equipos, redes y software
-        de forma cotidiana para que la organización cumpla sus objetivos: acceso a datos, comunicación,
-        aplicaciones de trabajo y respaldo de la información.
-      </p>
-      <p>
-        El <strong>mantenimiento</strong> son las acciones planificadas y reactivas que mantienen el sistema
-        disponible, seguro y eficiente a lo largo del tiempo.
-      </p>
+    <section id="inicio" class="toolbar" aria-label="Inicio">
+      <div class="toolbar-row">
+        <div>
+          <h2 class="toolbar-title">Panel interactivo</h2>
+          <p class="toolbar-subtitle">Busca por tema, abre menús y repasa con tabs, acordeones y un mini‑quiz.</p>
+        </div>
+        <button class="primary" type="button" id="openQuiz">Mini‑quiz</button>
+      </div>
+
+      <div class="filters" role="search">
+        <label class="field">
+          <span class="field-label">Buscar</span>
+          <input id="q" type="search" placeholder="Ej: ISO 27001, continuidad, incidente, SLA..." autocomplete="off">
+        </label>
+        <div class="chips" aria-label="Filtros rápidos">
+          <button type="button" class="chip" data-chip="iso">ISO</button>
+          <button type="button" class="chip" data-chip="planes">Planes</button>
+          <button type="button" class="chip" data-chip="itil">ITIL v3</button>
+          <button type="button" class="chip" data-chip="operacion">Operación</button>
+        </div>
+        <p class="hint">Tip: <kbd>Ctrl</kbd> + <kbd>F</kbd> también funciona, pero el buscador de arriba filtra secciones.</p>
+      </div>
     </section>
 
-    <!-- Sección 2: tipos de mantenimiento en formato lista tipo tarjetas -->
-    <section id="tipos-mantenimiento">
-      <h2>Tipos de mantenimiento</h2>
+    <section id="iso" data-topic="iso 20000 27001 22301 sgsi continuidad servicios auditoría evidencia">
+      <h2>Normas ISO (base para asegurar la operación)</h2>
+      <p>
+        Las normas ISO ayudan a <strong>estandarizar</strong> cómo se gestiona la seguridad, la continuidad y los servicios TI.
+        En clase suelen pedirse como “marco” para justificar controles, procedimientos y evidencias.
+      </p>
+
+      <div id="iso-tabs" class="tabs" aria-label="Tabs ISO">
+        <div class="tablist" role="tablist" aria-label="Normas ISO">
+          <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="tab-20000" id="t-20000">ISO/IEC 20000</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tab-27001" id="t-27001">ISO/IEC 27001</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tab-22301" id="t-22301">ISO 22301</button>
+        </div>
+
+        <div class="tabpanes">
+          <article class="tabpane" role="tabpanel" id="tab-20000" aria-labelledby="t-20000">
+            <h3>Gestión de Servicios de TI (ITSM)</h3>
+            <ul class="bullets">
+              <li>Enfocada en <strong>calidad del servicio</strong>: incidentes, cambios, SLAs y mejora continua.</li>
+              <li>Útil para evidenciar que el servicio se gestiona con procesos y métricas.</li>
+              <li>Relacionable con ITIL (prácticas).</li>
+            </ul>
+          </article>
+          <article class="tabpane" role="tabpanel" id="tab-27001" aria-labelledby="t-27001" hidden>
+            <h3>Sistema de Gestión de Seguridad de la Información (SGSI)</h3>
+            <ul class="bullets">
+              <li>Se basa en <strong>riesgos</strong>, controles y mejora continua.</li>
+              <li>Evidencias típicas: inventario de activos, evaluación de riesgos, políticas, auditorías.</li>
+              <li>Ayuda a asegurar confidencialidad, integridad y disponibilidad (CIA).</li>
+            </ul>
+          </article>
+          <article class="tabpane" role="tabpanel" id="tab-22301" aria-labelledby="t-22301" hidden>
+            <h3>Continuidad del Negocio (BCMS)</h3>
+            <ul class="bullets">
+              <li>Define cómo <strong>seguir operando</strong> ante interrupciones (fallas, desastres, ciberincidentes).</li>
+              <li>Claves: BIA (análisis de impacto), RTO/RPO, estrategia de continuidad, pruebas.</li>
+              <li>Se conecta con BCP/DRP.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="controles" data-topic="controles evidencia auditoría políticas procedimientos registros">
+      <h2>Controles y evidencia (lo que “piden” los marcos)</h2>
       <ul class="cards">
         <li>
-          <h3>Preventivo</h3>
-          <p>Revisiones periódicas, limpieza física, actualizaciones de software y comprobación de copias de seguridad.</p>
+          <h3>Políticas</h3>
+          <p>Documentos: seguridad, respaldos, accesos, cambios, continuidad.</p>
         </li>
         <li>
-          <h3>Correctivo</h3>
-          <p>Reparación de fallos cuando algo deja de funcionar: hardware, conexión o errores en programas.</p>
+          <h3>Procedimientos</h3>
+          <p>Paso a paso: alta/baja de usuarios, parches, respuesta a incidentes, restauración.</p>
         </li>
         <li>
-          <h3>Evolutivo</h3>
-          <p>Cambios para adaptar el sistema a nuevas necesidades: más capacidad, nuevas aplicaciones o integraciones.</p>
+          <h3>Registros</h3>
+          <p>Bitácoras, tickets, reportes de pruebas, auditorías, monitoreo y métricas.</p>
         </li>
       </ul>
+
+      <details class="accordion">
+        <summary>Plantilla corta de evidencia (copiable)</summary>
+        <div class="panel">
+          <pre class="template"><code>Control / Proceso:
+Objetivo:
+Responsable:
+Frecuencia:
+Herramientas:
+Evidencia (archivo/captura/log):
+Resultado / Hallazgos:
+Acción correctiva:</code></pre>
+        </div>
+      </details>
     </section>
 
-    <!-- Sección 3: lista ordenada de recomendaciones operativas -->
-    <section id="buenas-practicas">
-      <h2>Buenas prácticas de operación</h2>
-      <ol>
-        <li>Definir responsables y horarios de atención ante incidencias.</li>
-        <li>Documentar equipos, licencias y contraseñas en un lugar seguro autorizado.</li>
-        <li>Aplicar actualizaciones de seguridad y reinicios programados cuando corresponda.</li>
-        <li>Verificar periódicamente que las copias de respaldo se restauran correctamente.</li>
-        <li>Capacitar a los usuarios en el uso básico y en señalar fallos sin demora.</li>
+    <section id="planes" data-topic="planes contingencia continuidad bcp drp rto rpo crisis comunicación">
+      <h2>Planes de contingencia y continuidad</h2>
+      <p>
+        Un plan no es solo “un documento”: incluye roles, contactos, escenarios, procedimientos de recuperación y
+        <strong>pruebas</strong>. Objetivo: mantener servicios críticos y reducir el tiempo de caída.
+      </p>
+
+      <details class="accordion" open>
+        <summary>BCP vs DRP (rápido)</summary>
+        <div class="grid-2">
+          <div class="panel">
+            <h3 class="panel-title">BCP (Business Continuity Plan)</h3>
+            <ul class="bullets">
+              <li>Cómo seguir operando el negocio (prioridades, procesos críticos).</li>
+              <li>Comunicación, roles, proveedores, trabajo alterno.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">DRP (Disaster Recovery Plan)</h3>
+            <ul class="bullets">
+              <li>Cómo recuperar TI (infra, datos, apps, redes).</li>
+              <li>RTO/RPO, respaldos, restauración, failover.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="accordion">
+        <summary>Checklist de un plan de contingencia (mínimo)</summary>
+        <ul class="checklist" id="planChecklist">
+          <li><label><input type="checkbox" data-save="c1"> Inventario de servicios críticos y dependencias.</label></li>
+          <li><label><input type="checkbox" data-save="c2"> Contactos, roles y cadena de escalamiento.</label></li>
+          <li><label><input type="checkbox" data-save="c3"> Escenarios (falla eléctrica, ransomware, ISP, HW, error humano).</label></li>
+          <li><label><input type="checkbox" data-save="c4"> Procedimiento de respaldo y restauración probado.</label></li>
+          <li><label><input type="checkbox" data-save="c5"> Comunicación (interno, clientes, proveedores).</label></li>
+          <li><label><input type="checkbox" data-save="c6"> Lecciones aprendidas y mejora continua.</label></li>
+        </ul>
+        <div class="actions">
+          <button class="secondary" type="button" id="resetChecklist">Reiniciar checklist</button>
+        </div>
+      </details>
+    </section>
+
+    <section id="operativos" data-topic="plan operativo operación diaria monitoreo respaldos parches cambios">
+      <h2>Planes operativos (operación diaria/semanal)</h2>
+      <p class="muted">Un plan operativo traduce “buenas prácticas” en actividades con frecuencia, responsable y evidencia.</p>
+
+      <details class="accordion" open>
+        <summary>Rutina recomendada (por frecuencia)</summary>
+        <div class="grid-2">
+          <div class="panel">
+            <h3 class="panel-title">Diario</h3>
+            <ul class="bullets">
+              <li>Revisar monitoreo/alertas y tickets.</li>
+              <li>Verificar respaldos (ejecución + estado).</li>
+              <li>Revisar capacidad (CPU/RAM/disco) y eventos críticos.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3 class="panel-title">Semanal / Mensual</h3>
+            <ul class="bullets">
+              <li>Ventana de parches y reinicios planificados.</li>
+              <li>Prueba de restauración (muestra) y revisión de permisos.</li>
+              <li>Revisión de cambios (CAB) y post‑implementación.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section id="simulacros" data-topic="pruebas simulacros continuidad ejercicios tabletop recuperación">
+      <h2>Pruebas, simulacros y mejora</h2>
+      <details class="accordion">
+        <summary>Tipos de prueba</summary>
+        <ul class="bullets">
+          <li><strong>Tabletop</strong>: ejercicio de mesa (roles + decisiones) sin tocar producción.</li>
+          <li><strong>Parcial</strong>: restauración de un sistema / base de datos.</li>
+          <li><strong>Completa</strong>: conmutación / recuperación end‑to‑end (idealmente en entorno alterno).</li>
+        </ul>
+      </details>
+      <details class="accordion">
+        <summary>Qué medir (evidencia)</summary>
+        <ul class="checklist">
+          <li>Tiempo real de recuperación vs RTO.</li>
+          <li>Pérdida real de datos vs RPO.</li>
+          <li>Incidencias detectadas y acciones correctivas.</li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="itil" data-topic="itil v3 ciclo de vida estrategia diseño transicion operación mejora continua">
+      <h2>ITIL v3 (marco de buenas prácticas)</h2>
+      <p>
+        ITIL v3 organiza la gestión de servicios en un ciclo de vida. No es “una norma”, pero sí un marco muy usado
+        para definir procesos, roles y métricas.
+      </p>
+      <ol class="timeline">
+        <li><strong>Estrategia del Servicio</strong>: qué servicios, a quién y con qué valor.</li>
+        <li><strong>Diseño del Servicio</strong>: arquitectura, SLAs, capacidad, continuidad, seguridad.</li>
+        <li><strong>Transición del Servicio</strong>: cambios, liberaciones, pruebas, configuración.</li>
+        <li><strong>Operación del Servicio</strong>: incidentes, problemas, eventos, accesos.</li>
+        <li><strong>Mejora Continua</strong>: medir, analizar y mejorar.</li>
       </ol>
     </section>
 
-    <!-- Sección 4: seguridad informática básica -->
-    <section id="seguridad">
-      <h2>Seguridad básica</h2>
-      <p>
-        Proteger el sistema incluye antivirus o protección integrada del sistema operativo, cortafuegos,
-        contraseñas robustas y, cuando sea posible, autenticación en dos pasos. Evitar conectar dispositivos
-        no confiables y no abrir archivos o enlaces sospechosos reduce riesgos comunes.
-      </p>
+    <section id="procesos" data-topic="incidente problema cambio configuración cmdb solicitud servicio">
+      <h2>Procesos clave (para repaso rápido)</h2>
+      <ul class="cards">
+        <li>
+          <h3>Incidentes</h3>
+          <p>Restaurar el servicio rápido. Prioridad por impacto + urgencia.</p>
+        </li>
+        <li>
+          <h3>Problemas</h3>
+          <p>Eliminar causa raíz. KEDB, análisis, acciones permanentes.</p>
+        </li>
+        <li>
+          <h3>Cambios</h3>
+          <p>Reducir riesgo. Aprobaciones, ventana, plan de reversa.</p>
+        </li>
+      </ul>
+
+      <details class="accordion">
+        <summary>Modelo simple: Impacto + Urgencia = Prioridad</summary>
+        <div class="panel">
+          <p class="muted">Ejemplo: Impacto Alto + Urgencia Alta → Prioridad P1 (atención inmediata).</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="metricas" data-topic="kpi sla sli disponibilidad mttr mtbf cumplimiento">
+      <h2>KPIs y SLAs (aseguramiento)</h2>
+      <div class="grid-2">
+        <div class="panel">
+          <h3 class="panel-title">Métricas típicas</h3>
+          <ul class="bullets">
+            <li><strong>Disponibilidad</strong> del servicio (%)</li>
+            <li><strong>MTTR</strong> (tiempo medio de reparación)</li>
+            <li><strong>MTBF</strong> (tiempo medio entre fallas)</li>
+            <li><strong>Cumplimiento</strong> de SLA (% en tiempo)</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3 class="panel-title">Evidencia</h3>
+          <ul class="bullets">
+            <li>Reportes mensuales, tablero de monitoreo.</li>
+            <li>Tiempos de atención y resolución por ticket.</li>
+            <li>Post‑mortems y acciones preventivas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="herramientas" data-topic="herramientas comandos powershell linux respaldo red monitoreo">
+      <h2>Herramientas rápidas (comandos copiables)</h2>
+      <p class="muted">Úsalos solo en equipos autorizados. Sirven para práctica y diagnóstico básico.</p>
+
+      <details class="accordion" open>
+        <summary>Operación y diagnóstico</summary>
+        <div class="cmd-grid">
+          <div class="cmd" data-cmd>
+            <div class="cmd-head">
+              <span class="pill">Windows (CMD)</span>
+              <button class="ghost" type="button" data-copy>Copiar</button>
+            </div>
+            <pre><code>ipconfig /all</code></pre>
+          </div>
+          <div class="cmd" data-cmd>
+            <div class="cmd-head">
+              <span class="pill">Windows (PowerShell)</span>
+              <button class="ghost" type="button" data-copy>Copiar</button>
+            </div>
+            <pre><code>Get-Service | Where-Object {$_.Status -eq "Running"}</code></pre>
+          </div>
+          <div class="cmd" data-cmd>
+            <div class="cmd-head">
+              <span class="pill">Linux</span>
+              <button class="ghost" type="button" data-copy>Copiar</button>
+            </div>
+            <pre><code>systemctl --failed</code></pre>
+          </div>
+          <div class="cmd" data-cmd>
+            <div class="cmd-head">
+              <span class="pill">Backup (Windows)</span>
+              <button class="ghost" type="button" data-copy>Copiar</button>
+            </div>
+            <pre><code>robocopy "C:\Datos" "D:\Respaldo\Datos" /MIR /R:1 /W:1</code></pre>
+          </div>
+        </div>
+      </details>
     </section>
   </main>
 
-  <!-- Pie de página: aviso legal o aclaratorio -->
   <footer class="site-footer">
-    <p>Página informativa de ejemplo — contenido general, no sustituye políticas internas de su organización.</p>
+    <p>Hecho para repaso escolar — contenido general (ISO/ITIL) y ejemplos. Ajusta a políticas y contexto real.</p>
   </footer>
+
+  <dialog class="modal" id="quiz" aria-label="Mini-quiz de operación y aseguramiento">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head">
+        <h2 class="modal-title">Mini‑quiz</h2>
+        <button class="ghost" value="cancel" aria-label="Cerrar">Cerrar</button>
+      </div>
+      <div class="modal-body" id="quizBody"></div>
+      <div class="modal-actions">
+        <button class="secondary" value="cancel">Salir</button>
+        <button class="primary" id="grade" value="default" type="button">Calificar</button>
+      </div>
+      <p class="muted" id="quizResult" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <script>
+    (function () {
+      const $ = (s, r = document) => r.querySelector(s);
+      const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+      // Menús (submenús) en el header
+      const groups = $$('.nav-group');
+      function closeAllMenus(except) {
+        groups.forEach(g => {
+          const btn = $('.nav-button', g);
+          const panelId = btn?.dataset.menu;
+          const panel = panelId ? document.getElementById(panelId) : null;
+          const keep = except && except === g;
+          if (!keep) {
+            btn?.setAttribute('aria-expanded', 'false');
+            panel?.classList.remove('open');
+          }
+        });
+      }
+      groups.forEach(g => {
+        const btn = $('.nav-button', g);
+        const panelId = btn?.dataset.menu;
+        const panel = panelId ? document.getElementById(panelId) : null;
+        if (!btn || !panel) return;
+        btn.addEventListener('click', () => {
+          const isOpen = panel.classList.toggle('open');
+          btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) closeAllMenus(g);
+        });
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-group')) closeAllMenus();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeAllMenus();
+      });
+
+      // Tabs ISO
+      const tabRoot = $('#iso-tabs');
+      if (tabRoot) {
+        const tabs = $$('.tab', tabRoot);
+        const panes = $$('.tabpane', tabRoot);
+        function activate(tab) {
+          tabs.forEach(t => t.setAttribute('aria-selected', t === tab ? 'true' : 'false'));
+          panes.forEach(p => p.hidden = p.id !== tab.getAttribute('aria-controls'));
+        }
+        tabs.forEach(t => t.addEventListener('click', () => activate(t)));
+      }
+
+      // Buscador por secciones
+      const q = $('#q');
+      const sections = $$('main section').filter(s => s.id && s.id !== 'inicio');
+      const norm = (v) => (v || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+      function applyFilter(value) {
+        const term = norm(value).trim();
+        sections.forEach(s => {
+          const hay = norm(s.dataset.topic || '') + ' ' + norm(s.textContent || '');
+          const ok = !term || hay.includes(term);
+          s.style.display = ok ? '' : 'none';
+        });
+      }
+      q?.addEventListener('input', () => applyFilter(q.value));
+
+      // Chips (filtros rápidos)
+      $$('.chip').forEach(ch => ch.addEventListener('click', () => {
+        const term = ch.dataset.chip || '';
+        if (q) {
+          q.value = term;
+          applyFilter(term);
+          q.focus();
+        }
+      }));
+
+      // Guardado de checklist en localStorage
+      const key = 'repaso_ops_checklist_v1';
+      const checks = $$('#planChecklist input[type="checkbox"][data-save]');
+      function loadChecklist() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(key) || '{}');
+          checks.forEach(c => c.checked = !!saved[c.dataset.save]);
+        } catch {}
+      }
+      function saveChecklist() {
+        const state = {};
+        checks.forEach(c => state[c.dataset.save] = c.checked);
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch {}
+      }
+      checks.forEach(c => c.addEventListener('change', saveChecklist));
+      loadChecklist();
+      $('#resetChecklist')?.addEventListener('click', () => {
+        checks.forEach(c => c.checked = false);
+        saveChecklist();
+      });
+
+      // Copiar comandos
+      $$('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+        const card = btn.closest('[data-cmd]');
+        const code = $('code', card)?.textContent || '';
+        try {
+          await navigator.clipboard.writeText(code);
+          btn.textContent = 'Copiado';
+          setTimeout(() => (btn.textContent = 'Copiar'), 900);
+        } catch {
+          btn.textContent = 'No se pudo';
+          setTimeout(() => (btn.textContent = 'Copiar'), 900);
+        }
+      }));
+
+      // Mini-quiz
+      const quiz = $('#quiz');
+      const openQuiz = $('#openQuiz');
+      const quizBody = $('#quizBody');
+      const quizResult = $('#quizResult');
+      const grade = $('#grade');
+      const questions = [
+        { q: '¿Qué norma se asocia más con un SGSI (seguridad de la información)?', a: ['ISO 22301', 'ISO/IEC 27001', 'ISO/IEC 20000'], ok: 1 },
+        { q: 'En continuidad, RTO se refiere a…', a: ['Tiempo máximo aceptable para recuperar', 'Pérdida máxima de datos aceptable', 'Tiempo medio entre fallas'], ok: 0 },
+        { q: 'ITIL v3: el proceso que busca restaurar el servicio rápido es…', a: ['Gestión de Incidentes', 'Gestión de Problemas', 'Gestión de Cambios'], ok: 0 },
+      ];
+      function renderQuiz() {
+        if (!quizBody) return;
+        quizBody.innerHTML = questions.map((x, i) => `
+          <fieldset class="quiz-q">
+            <legend>${i + 1}. ${x.q}</legend>
+            ${x.a.map((opt, j) => `
+              <label class="quiz-opt">
+                <input type="radio" name="q${i}" value="${j}">
+                <span>${opt}</span>
+              </label>
+            `).join('')}
+          </fieldset>
+        `).join('');
+        if (quizResult) quizResult.textContent = '';
+      }
+      function scoreQuiz() {
+        let score = 0;
+        questions.forEach((x, i) => {
+          const v = $(`input[name="q${i}"]:checked`)?.value;
+          if (Number(v) === x.ok) score += 1;
+        });
+        if (quizResult) quizResult.textContent = `Resultado: ${score}/${questions.length}`;
+      }
+      openQuiz?.addEventListener('click', () => {
+        renderQuiz();
+        quiz?.showModal?.();
+      });
+      grade?.addEventListener('click', scoreQuiz);
+    })();
+  </script>
 </body>
 </html>
